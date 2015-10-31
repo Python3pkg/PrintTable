@@ -1,2 +1,1 @@
-# printtable
-draw the tables in the terminal
+the library can draw the tables in the terminal
