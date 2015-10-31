@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 
 setup(
     name = 'PrintTable',
-    version = '1.1',
+    version = '1.0',
     keywords = ('print table'),
     description = 'a library for drawing the table in the terminal',
     license = 'MIT License',
