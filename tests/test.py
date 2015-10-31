@@ -1,6 +1,4 @@
-
-
-
+from printtable import PrintTable
 
 table = PrintTable(['name','old'])
 table.append_data(name="Jack",old = "20")
