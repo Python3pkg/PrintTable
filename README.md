@@ -1,6 +1,6 @@
 Printtable是一个可以在terminal上输出数据表样式的python包。
 
- ![image](https://raw.githubusercontent.com/Leviathan1995/Pylsy/master/pzi/span.png)
+ ![image](https://raw.githubusercontent.com/prozhuchen/PrintTable/master/picture/demo.jpg)
  
 
 <h2>下载方式</h2>
