@@ -1,4 +1,4 @@
-Printtable是一个可以在terminal上输出数据表样式的python公共库。
+Printtable是一个可以在terminal上输出数据表样式的python包。
 
  ![image](https://raw.githubusercontent.com/prozhuchen/PrintTable/master/picture/demo.jpg)
  
