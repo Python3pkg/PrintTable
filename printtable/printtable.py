@@ -4,6 +4,7 @@
 
 class PrintTable(object):
     """draw the table in the terminal"""
+
     def  __init__(self, attribute):
         self.StrTable = ""
         self.Attribute = []
@@ -17,7 +18,7 @@ class PrintTable(object):
             attr =  str(attr)
             self.Attribute.append(attr)
             self.table[attr] = [attr]
-            self.AttributeLen[attr] = len(attr)+2
+            self.AttributeLen[attr] = self.value_len(attr)+2
 
     def add_data(self,attr,value):
         """append list of data or a data in the table,
@@ -30,14 +31,14 @@ class PrintTable(object):
         tp = type(value)
         if tp == str:
             self.table[attr].append(value)
-            self.AttributeLen[attr] = max(self.AttributeLen[attr],len(value)+2)
+            self.AttributeLen[attr] = max(self.AttributeLen[attr],self.value_len(value)+2)
         elif tp == int:
             self.table[attr].append(str(value))
             self.AttributeLen[attr] = max(self.AttributeLen[attr],len(str(value))+2)
         elif tp == list:
             for v in value:
                 self.table[attr].append(str(v))
-                self.AttributeLen[attr] = max(self.AttributeLen[attr],len(str(v))+2)
+                self.AttributeLen[attr] = max(self.AttributeLen[attr],self.value_len(str(v))+2)
         self.Row_num = max(self.Row_num, len(self.table[attr]))
 
     def append_data_list(self,value_lists):
@@ -50,7 +51,7 @@ class PrintTable(object):
         for i in range(self.Col_num):
             if i < len(value_list):
                 self.table[self.Attribute[i]].append(value_list[i])
-                self.AttributeLen[self.Attribute[i]] = max(self.AttributeLen[self.Attribute[i]],len(value_list[i])+2)
+                self.AttributeLen[self.Attribute[i]] = max(self.AttributeLen[self.Attribute[i]],self.value_len(value_list[i])+2)
             else:
                 self.table[self.Attribute[i]].append("")
         self.Row_num+=1
@@ -68,7 +69,7 @@ class PrintTable(object):
             if attr in args:
                 self.add_data(attr,args[attr])
         for attr in self.Attribute:
-            self.table[attr].extend(["" for i in xrange(self.Row_num-len(self.table[attr]))]) 
+            self.table[attr].extend(["" for i in xrange(self.Row_num-self.value_len(self.table[attr]))]) 
 
         
     def printDivide(self,line_num):
@@ -109,10 +110,22 @@ class PrintTable(object):
                     self.StrTable += " "*space_num+str(num)+" "*(self.line_len-len(str(num))-space_num)+"|"
 
             for attr in self.Attribute:
-                space_num = (self.AttributeLen[attr]-len(self.table[attr][num]))/2
+                space_num = (self.AttributeLen[attr]-self.value_len(self.table[attr][num]))/2
                 self.StrTable += " "*space_num+self.table[attr][num]+\
-                                         " "*(self.AttributeLen[attr]-len(self.table[attr][num])-space_num) + '|'
+                                         " "*(self.AttributeLen[attr]-self.value_len(self.table[attr][num])-space_num) + '|'
             self.StrTable += "\n"
             self.printDivide(line_num)
 
         print self.StrTable
+
+    def value_len(self,value):
+        """comfirm length of value ,for Chinese and English
+
+        Args:
+            value: data to be processed 
+        """
+        value = str(value)
+        if len(value) == len(value.decode('utf-8')):
+                return len(value)
+        else:
+                return  len(value)*2/3
