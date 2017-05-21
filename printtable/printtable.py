@@ -69,7 +69,7 @@ class PrintTable(object):
             if attr in args:
                 self.add_data(attr,args[attr])
         for attr in self.Attribute:
-            self.table[attr].extend(["" for i in xrange(self.Row_num-self.value_len(self.table[attr]))]) 
+            self.table[attr].extend(["" for i in range(self.Row_num-self.value_len(self.table[attr]))]) 
 
         
     def printDivide(self,line_num):
@@ -99,7 +99,7 @@ class PrintTable(object):
 
         self.StrTable=""
         self.printDivide(line_num)
-        for num in xrange(self.Row_num):
+        for num in range(self.Row_num):
             self.StrTable += "|"
 
             if line_num == 1:
@@ -116,7 +116,7 @@ class PrintTable(object):
             self.StrTable += "\n"
             self.printDivide(line_num)
 
-        print self.StrTable
+        print(self.StrTable)
 
     def value_len(self,value):
         """comfirm length of value ,for Chinese and English
